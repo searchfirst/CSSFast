@@ -10,7 +10,7 @@
  */
 class CSSFast {
 	// The css variable. Stick it all in here and we will work magic upon it
-	var $css
+	var $css;
 	
 	// The constructor. Pass your CSS in or die
 	function __construct($css=null) {
@@ -21,8 +21,8 @@ class CSSFast {
 	
 	//Trim that stuff!
 	function fastCSS($css) {
-		$css = preg_replace('^\s+','',$css);
-		$css = preg_replace('\n','',$css);
+		$css = preg_replace('/^\s+/','',$css);
+		$css = preg_replace('/\n/','',$css);
 		$css = str_replace(';}','}',$css);
 		$this->css = $css;
 	}
