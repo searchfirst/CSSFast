@@ -21,9 +21,10 @@ class CSSFast {
 	
 	//Trim that stuff!
 	function fastCSS($css) {
-		$css = preg_replace('/\/\*.*?\*\//m','',$css); //Remove comments
-		$css = preg_replace('/^\s+/','',$css); // Remove excess whitespace on lines
-		$css = preg_replace('/\n/','',$css); // Remove newlines
+		$css = preg_replace('#\/\*(.+?)\*\/#ism','',$css); //Remove comments
+		$css = preg_replace('#^(\s|\t)+#ism','',$css); // Remove excess whitespace on lines
+		$css = preg_replace('#(\r)?\n#ism','',$css); // Remove newlines
+		$css = preg_replace('#\s{#ism','{',$css); //Trim last space between {
 		$css = str_replace(';}','}',$css); // Remove final semi-colon at last declaration of a CSS block
 		$this->css = $css;
 	}
